@@ -4,7 +4,7 @@
  *
  * PHP version 5
  *
- * @category  Typolight
+ * @category  Contao
  * @package   Ext404
  * @author    Benjamin Meier <b2m@gmx.de>
  * @copyright 2009-2010 Benjamin Meier
@@ -17,7 +17,7 @@ if (!defined('TL_ROOT')) die('You can not access this file directly!');
 /**
  * Class Ext404 
  *
- * @category  Typolight
+ * @category  Contao
  * @package   Ext404
  * @author    Benjamin Meier <b2m@gmx.de>
  * @copyright 2009-2010 Benjamin Meier

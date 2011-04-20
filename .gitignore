@@ -12,7 +12,6 @@ tmp/** /*
 
 # logs and dbs
 *.log
-*.sql
 *.sqlite
 ehthumbs.db
 Icon?

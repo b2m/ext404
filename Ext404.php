@@ -22,7 +22,7 @@ if (!defined('TL_ROOT')) die('You can not access this file directly!');
  * @author    Benjamin Meier <b2m@gmx.de>
  * @copyright 2009-2011 Benjamin Meier
  * @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
- * @link      http://dev.typolight-forge.org/projects/show/ext404
+ * @link      https://github.com/b2m/ext404
  */
 class Ext404 extends Module
 {

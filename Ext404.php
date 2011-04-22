@@ -6,7 +6,7 @@
  *
  * @category  Contao
  * @package   Ext404
- * @author    Benjamin Meier <b2m@gmx.de>
+ * @author    Benjamin Meier <gpl@code-meier.de>
  * @copyright 2009-2011 Benjamin Meier
  * @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
  * @link      https://github.com/b2m/ext404
@@ -19,7 +19,7 @@ if (!defined('TL_ROOT')) die('You can not access this file directly!');
  *
  * @category  Contao
  * @package   Ext404
- * @author    Benjamin Meier <b2m@gmx.de>
+ * @author    Benjamin Meier <gpl@code-meier.de>
  * @copyright 2009-2011 Benjamin Meier
  * @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
  * @link      https://github.com/b2m/ext404

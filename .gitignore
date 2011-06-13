@@ -9,6 +9,8 @@ bin/** /*
 build/** /*
 cache/** /*
 tmp/** /*
+test
+docs
 
 # logs and dbs
 *.log

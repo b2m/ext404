@@ -15,7 +15,7 @@
 if (!defined('TL_ROOT')) die('You can not access this file directly!');
 
 /**
- * Class Ext404 
+ * Class Ext404
  *
  * @category  Contao
  * @package   Ext404
@@ -46,13 +46,13 @@ class Ext404 extends Module
     {
         if (TL_MODE == 'BE') {
             $objTemplate = new BackendTemplate('be_wildcard');
-            
+
             $objTemplate->wildcard = '### Extended 404 ###';
             $objTemplate->title = $this->headline;
-      
+
             return $objTemplate->parse();
         }
-    
+
         return parent::generate();
     }
 
@@ -71,20 +71,20 @@ class Ext404 extends Module
             $this->handleExt($ext, $this->ext404_ext, $this->ext404_ext_handle);
         }
         // handling whitelist for file extensions for ie8
-        if (stripos($this->Environment->httpUserAgent, "msie 8.")!==false 
+        if (stripos($this->Environment->httpUserAgent, "msie 8.")!==false
             && strlen($this->ext404_ie8_ext)>0
         ) {
             $this->handleExt(
-                $ext, 
+                $ext,
                 $this->ext404_ie8_ext,
                 $this->ext404_ie8_ext_handle
             );
         }
-  
+
 
         $this->referer = $this->Environment->http_referer;
         $refhost = parse_url($this->referer, PHP_URL_HOST);
-        /* reverse IP-Lookup 
+        /* reverse IP-Lookup
          * - check for -1 and false because of strange behaviour of ip2long
          */
         if (ip2long($refhost)!=-1 && ip2long($refhost)!=false) {
@@ -134,7 +134,7 @@ class Ext404 extends Module
                 } else {
                     /* Case 4: Wrong Link from other website */
                     $this->Template->text = sprintf(
-                        $GLOBALS['TL_LANG']['MSC']['ext404_text_case4'], 
+                        $GLOBALS['TL_LANG']['MSC']['ext404_text_case4'],
                         $this->request
                     );
                     if ($this->checkinform($GLOBALS['TL_LANG']['MSC']['ext404_email_other_error_subject'], $GLOBALS['TL_LANG']['MSC']['ext404_email_other_error_text'])) {
@@ -144,7 +144,7 @@ class Ext404 extends Module
                 }
             }
         }
-    } 
+    }
 
     /**
      * Sends an information mail

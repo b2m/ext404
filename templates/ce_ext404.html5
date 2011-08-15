@@ -2,8 +2,8 @@
 <?php if($this->headline) : ?>
 <<?php echo $this->hl;?>><?php echo $this->headline;?></<?php echo $this->hl;?>>
 <?php endif; ?>
-<?php echo $this->text; ?> 
-<?php if($this->addtext) : ?>
+<?php echo $this->text; ?>
+<?php if($this->addtext): ?>
 <?php echo $this->addtext; ?>
 <?php endif; ?>
 </div>

@@ -103,13 +103,19 @@ class Ext404 extends Module
         } else {
             $search = "#^www([0-9]{0,1})\.#";
             $referer_search = preg_replace($search, '', $refhost);
-            if (strpos($referer_search, $this->Environment->host)===0) {
+            // remove leading www. in host since Contao 2.10
+            $referer_compare = preg_replace($search, '', $this->Environment->host);
+            if (strpos($referer_search, $referer_compare)===0) {
                 /* Case 2: Wrong Link on our website */
                 $this->Template->text = sprintf(
                     $GLOBALS['TL_LANG']['MSC']['ext404_text_case2'],
                     $this->request
                 );
-                if ($this->checkinform($GLOBALS['TL_LANG']['MSC']['ext404_email_own_error_subject'], $GLOBALS['TL_LANG']['MSC']['ext404_email_own_error_text'])) {
+                if ($this->checkinform(
+                    $GLOBALS['TL_LANG']['MSC']['ext404_email_own_error_subject'],
+                    $GLOBALS['TL_LANG']['MSC']['ext404_email_own_error_text']
+                )
+                ) {
                     $this->Template->addtext = $GLOBALS['TL_LANG']['MSC']['ext404_text_case2_informed'];
                 }
                 $this->entry();
@@ -130,14 +136,21 @@ class Ext404 extends Module
                 }
                 if ($searchengine) {
                     /* Case 3: Wrong Link from searchengine */
-                    $this->Template->text = sprintf($GLOBALS['TL_LANG']['MSC']['ext404_text_case3'], $this->request);
+                    $this->Template->text = sprintf(
+                        $GLOBALS['TL_LANG']['MSC']['ext404_text_case3'],
+                        $this->request
+                    );
                 } else {
                     /* Case 4: Wrong Link from other website */
                     $this->Template->text = sprintf(
                         $GLOBALS['TL_LANG']['MSC']['ext404_text_case4'],
                         $this->request
                     );
-                    if ($this->checkinform($GLOBALS['TL_LANG']['MSC']['ext404_email_other_error_subject'], $GLOBALS['TL_LANG']['MSC']['ext404_email_other_error_text'])) {
+                    if ($this->checkinform(
+                        $GLOBALS['TL_LANG']['MSC']['ext404_email_other_error_subject'],
+                        $GLOBALS['TL_LANG']['MSC']['ext404_email_other_error_text']
+                    )
+                    ) {
                         $this->Template->addtext = $GLOBALS['TL_LANG']['MSC']['ext404_text_case4_informed'];
                     }
                     $this->entry();
@@ -194,7 +207,9 @@ class Ext404 extends Module
     {
         // only inform once per month on double entries
         $stamp = time()-31*7*24*60*60;
-        $query = "SELECT id FROM tl_ext404_log WHERE page=? AND referer=? AND tstamp >?";
+        $query = "SELECT id FROM tl_ext404_log WHERE page=? ";
+        $query.= "AND referer=? AND tstamp >?";
+
         $check = $this->Database->prepare($query)
             ->limit(1)
             ->execute($this->request, $this->referer, $stamp);

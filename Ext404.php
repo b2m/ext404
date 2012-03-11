@@ -94,6 +94,12 @@ class Ext404 extends Module
         }
 
         $this->request = $this->Environment->url.$this->Environment->requestUri;
+
+        // replace leading http and www parts
+        $search = "#^(http://){0,1}www([0-9]{0,1})\.#";
+        $this->referer = preg_replace($search, '', $this->referer);
+        $this->request = preg_replace($search, '', $this->request);
+
         if ($this->referer=="" || $this->referer==$this->request) {
             /* Case 1: Direct Call or wrong referer */
             $this->Template->text = sprintf(
@@ -101,10 +107,10 @@ class Ext404 extends Module
                 $this->request
             );
         } else {
-            $search = "#^www([0-9]{0,1})\.#";
+            // remove leading http and www parts
             $referer_search = preg_replace($search, '', $refhost);
-            // remove leading www. in host since Contao 2.10
             $referer_compare = preg_replace($search, '', $this->Environment->host);
+
             if (strpos($referer_search, $referer_compare)===0) {
                 /* Case 2: Wrong Link on our website */
                 $this->Template->text = sprintf(

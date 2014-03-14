@@ -30,3 +30,7 @@ log*.txt
 *.rar
 *.tar
 *.zip
+
+#compiled files
+*.class
+*.o
